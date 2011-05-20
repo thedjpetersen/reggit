@@ -1,0 +1,10 @@
+{% extends "application.html" %}
+
+{% block content %}
+<h1>Login</h1>
+<form action="/login/" method="POST">
+  Username:<input name="username"></input><br/>
+  Password:<input type="password" name="password"></input><br/>
+  <input type="submit"/><br/>
+</form>
+{% endblock %}
