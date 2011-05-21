@@ -1,0 +1,15 @@
+{% extends "application.html" %}
+
+{% block content %}
+
+<h1>Transcript</h1>
+
+{% for entry in transcript %}
+  <h4>{{ entry.Name }}</h4>
+  <span>Department: {{entry.Department}}</span><br/>
+  <span>Course Number: {{entry.CourseNumber}}</span><br/>
+  <span>Term: {{entry.Term}} </span><br/>
+  <span>Grade: {{entry.Grade}} </span>
+{% endfor %}
+
+{% endblock %}

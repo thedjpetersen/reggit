@@ -9,6 +9,15 @@
 
   <body>
     <div class="container">
+	<div class="span-24 last">
+		<div class="span-14">
+			<span id="logo">OSU Registration</span>
+		</div>
+		<div class="span-10 last">
+			{% block navigation %}
+			{% endblock %}
+		</div>
+	</div>
       {% block content %}
       {% endblock %}
     </div>

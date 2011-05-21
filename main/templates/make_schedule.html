@@ -1,0 +1,277 @@
+{% extends "application.html" %}
+
+{% block content %}
+<form action="." method="POST">
+  <span>Enter a list of classes seperated commas</span>
+  <input name="classes" /></br>
+  <input type="submit" value="Submit" />
+</form>
+
+{% if combinations %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css" />
+    <script type="text/javascript" src="/site_media/javascripts/jquery-min.js" ></script>
+    <script>
+	    combinations = {{json|safe}}
+    </script>
+    
+    <script type="text/javascript" src="/site_media/javascripts/make_schedule.js" ></script>
+{% endblock %}
+
+  <div class="span 24 last">
+    <table>
+      <tr id="headers">
+        <th>Hour</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+      <tr id="hour-0">
+        <td class="Hour">0</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-1">
+        <td class="Hour">1</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-2">
+        <td class="Hour">2</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-3">
+        <td class="Hour">3</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-4">
+        <td class="Hour">4</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-5">
+        <td class="Hour">5</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-6">
+        <td class="Hour">6</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-7">
+        <td class="Hour">7</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-8">
+        <td class="Hour">8</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-9">
+        <td class="Hour">9</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-10">
+        <td class="Hour">10</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-11">
+        <td class="Hour">11</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-13">
+        <td class="Hour">13</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-14">
+        <td class="Hour">14</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-15">
+        <td class="Hour">15</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-16">
+        <td class="Hour">16</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-17">
+        <td class="Hour">17</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-18">
+        <td class="Hour">18</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-19">
+        <td class="Hour">19</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-20">
+        <td class="Hour">20</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-21">
+        <td class="Hour">21</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-22">
+        <td class="Hour">22</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-23">
+        <td class="Hour">23</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+
+  </table>
+  </div>
+  {% for combination in combinations %}
+  <h4>Combination {{forloop.counter}}</h4>
+  {% for class in combination %}
+  <span>({{class.Type}}) {{class.Dep}} {{class.Num}} </span>
+    <span> {{ class.Times }}</span><br/>
+  {% endfor %}
+  <br/>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
