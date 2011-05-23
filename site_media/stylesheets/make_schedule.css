@@ -1,4 +1,15 @@
 td{
-  border:1px solid black;
-  padding:4px;
+  background:white !important;
+}
+
+.selected{
+}
+
+.hours{
+  display:none;
+}
+
+#combinations{
+  height:500px;
+  overflow:auto;
 }

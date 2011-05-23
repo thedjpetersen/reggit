@@ -32,7 +32,7 @@
         <th>Sunday</th>
       </tr>
       {% for hour in range %}
-      <tr id="hour-{{hour}}">
+      <tr id="hour-{{hour}}" class="hours">
         <td class="Hour">{{hour}}:00</td>
         <td class="Monday"></td>
         <td class="Tuesday"></td>
@@ -42,7 +42,7 @@
         <td class="Saturday"></td>
         <td class="Sunday"></td>
       </tr>
-      <tr id="hour-{{hour}}-half">
+      <tr id="hour-{{hour}}-half" class="hours">
         <td class="Hour">{{hour}}:30</td>
         <td class="Monday"></td>
         <td class="Tuesday"></td>
@@ -55,16 +55,17 @@
       {% endfor %}
   </table>
 </div>
-<div class="span-6 last">
+<div id="combinations" class="span-6 last">
   {% for combination in combinations %}
-  <h4>Combination {{forloop.counter}}</h4>
-  {% for class in combination %}
-  <span>({{class.Type}}) {{class.Dep}} {{class.Num}} </span>
-  <span> {{class.Times.Days|join:"" }} {{ class.Times.Time|join:"-"  }}</span><br/>
-  {% endfor %}
+  <div id="combination-{{forloop.counter}}" class="combination">
+    <h4>Combination {{forloop.counter}}</h4>
+    {% for class in combination %}
+      <span>({{class.Type}}) {{class.Dep}} {{class.Num}} </span>
+      <span> {{class.Times.Days|join:"" }} {{ class.Times.Time|join:"-"  }}</span><br/>
+    {% endfor %}
   <br/>
+  </div>
   {% endfor %}
-</div>
 </div>
 {% endif %}
 
