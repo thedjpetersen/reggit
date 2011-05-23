@@ -69,5 +69,5 @@ def make_schedule(request):
     combinations = rc.make_schedule(classes)
     combinations_json = json.dumps(combinations)
 
-    return render_to_response('make_schedule.html', {'combinations':combinations, 'json':combinations_json})
+    return render_to_response('make_schedule.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24)})
 
