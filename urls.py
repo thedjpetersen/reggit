@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from regfe import main
+from reggie import main
 from django.conf import settings
 
 urlpatterns = patterns('',
