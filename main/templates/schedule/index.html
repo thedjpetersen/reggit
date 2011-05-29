@@ -1,7 +1,7 @@
 {% extends "application.html" %} 
 
 {% block content %}
-  <h1>Schedule</h1>
+  <h1>Schedule</h1><br/><br/>
   {% for entry in schedule %}
   <h4>{{entry.ClassName}}</h4>
   <span>Type: {{ entry.ClassType }}</span></br>
@@ -17,7 +17,7 @@
   <span>Registration: {{ entry.Registration }}</span><br/>
   <span>CRN: {{ entry.CRN }}</span><br/>
   <span>Grading Mode: {{ entry.GradingMode }}</span><br/>
-  <span>Credits: {{ entry.Credits }}</span><br/>
+  <span>Credits: {{ entry.Credits }}</span><br/><br/><br/>
 
 
 

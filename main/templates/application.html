@@ -1,4 +1,10 @@
+
 <html xmlns="http://www.w3.org/1999/xhml" xml:lang="en" lang="en">
+
+    <style type="text/css" media="all">
+        h1{display: inline;}
+    </style>
+                                                                                      
   <head>
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/screen.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/print.css" />
@@ -11,17 +17,29 @@
     <div class="container">
 	<div class="span-24 last">
 		<div class="span-14">
-			<span id="logo">OSU Registration</span>
+            <h1>Reggit</h1><span id="logo">    OSU Registration<br></span>
 		</div>
+
 		<div class="span-10 last">
 			{% block navigation %}
+                <span id="navigation" style="float: right;">
+                    {% ifnotequal no_show_nav 1 %} 
+                        <a href="/main">Home</a> |
+                        <a href="/make_schedule">Scheduler</a> |
+                        <a href="/transcript">Transcript</a> |
+                        <a href="/schedule">Current Schedule</a> |
+                        <a href="/logout">Logout</a>
+                    {% endifnotequal %}
+                </span>
 			{% endblock %}
 		</div>
+
 	</div>
       {% block content %}
       {% endblock %}
     </div>
   </body>
+
 </html>
 
 

@@ -1,10 +1,13 @@
 {% extends "application.html" %}
 
 {% block content %}
-<h1>Login</h1>
-<form action="/login/" method="POST">
-  Username:<input name="username"></input><br/>
-  Password:<input type="password" name="password"></input><br/>
-  <input type="submit"/><br/>
+
+<h1>Login</h1><br/></br>
+<span>Enter your OSU ID/GAP or ONID</span>
+<form action="/login/" method="POST" align="center">
+    Username:<input name="username"></input><br/>
+    Password:<input type="password" name="password"></input><br/>
+    <input type="submit" value="Login"><br/>
 </form>
+
 {% endblock %}

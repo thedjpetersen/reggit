@@ -1,10 +1,13 @@
 {% extends "application.html" %}
 
 {% block content %}
+
+<h1>Scheduler</h1><br/><br/>
+
 <form action="." method="POST">
-  <span>Enter a list of classes seperated commas</span>
-  <input name="classes" /></br>
-  <input type="submit" value="Submit" />
+  <span>Enter a list of classes separated commas</span><br/>
+  <input name="classes" /><input type="submit" value="Submit" />
+  <br/>
 </form>
 
 {% if combinations %}

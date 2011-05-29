@@ -1,6 +1,6 @@
 import os
 
-# Django settings for regfe project.
+# Django settings for reggit project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -67,7 +67,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'reggie.urls'
+ROOT_URLCONF = 'reggit.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
