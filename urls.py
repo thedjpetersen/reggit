@@ -11,5 +11,7 @@ urlpatterns = patterns('',
                         (r'^main/$', 'main.views.main'),
                         (r'^transcript/$', 'main.views.transcript'),
                         (r'^schedule/$', 'main.views.schedule'),
-                        (r'^make_schedule/$', 'main.views.make_schedule'),
+                        (r'^scheduler/$', 'main.views.scheduler'),
+                        (r'^courses/(?P<department>\w\w)(?P<course_number>\d\d\d)/$', 'main.views.show_course'),
+                        (r'^courses/(?P<department>\w\w\w)(?P<course_number>\d\d\d)/$', 'main.views.show_course'),
 )

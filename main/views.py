@@ -1,8 +1,8 @@
 from  django.shortcuts import render_to_response
+from django.http import Http404
 import simplejson as json
 from django.http import HttpResponseRedirect
 import reglib
-# Create your views here.
 
 def index(request):
     if 'regclass' in request.session:
@@ -51,19 +51,28 @@ def schedule(request):
     schedule = regclass.schedule.current_classes
     return render_to_response('schedule/index.html', {'schedule':schedule})
 
-def make_schedule(request):
+def scheduler(request):
     if not 'regclass' in request.session:
         return HttpResponseRedirect('/')
 
     if request.method == 'GET':
-        return render_to_response('make_schedule.html')
+        return render_to_response('scheduler/index.html')
     regclass = request.session['regclass']
     try:
         classes = request.POST['classes'].split(', ')
     except:
-        return render_to_response('make_schedule.html')
+        return render_to_response('scheduler/index.html')
     combinations = regclass.make_schedule(classes)
     combinations_json = json.dumps(combinations)
 
-    return render_to_response('make_schedule.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24)})
+    return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24)})
 
+def show_course(request, department, course_number):
+    regclass = request.session['regclass']
+
+    courses = regclass.class_search(department, course_number)
+    if courses is None:
+        raise Http404 
+    
+    return render_to_response('courses/show.html', {'courses': courses, 'department': department, 'course_number': course_number})
+    

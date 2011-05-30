@@ -1,0 +1,52 @@
+{% extends "application.html" %}
+{% load utilities %}
+
+{% block content %}
+
+<h1>{{department}}{{course_number}}</h1><br/>
+<h6><a href="http://catalog.oregonstate.edu/CourseDetail.aspx?Columns=abcdefghijklmnopqrstuvwxyz&SubjectCode={{department}}&CourseNumber={{course_number}}&Campus=corvallis">Class Catalog Entry</a></h6>
+
+<table>
+    <tr id="table headers">
+        <th>Term</th>
+        <th>CRN</th>
+        <th>Course</th>
+        <th>Type</th>
+        <th>Credits</th>
+        <th>Instructor</th>
+        <th>Days</th>
+        <th>Time</th>
+        <th>Dates</th>
+        <th>Location</th>
+        <th>Available Spots</th>
+        <th>Cap</th>
+        <th>Available Waitlist</th>
+        <th>Restrictions</th>
+    </tr>
+{% for course in courses %}
+    <tr>
+    <td>{{course.Term}}</td>
+    <td>{{course.CRN}}</td>
+    <td>{{department}}{{course_number}}</td>
+    <td>{{course.Type}}</td>
+    <td>{{course.Cr}}</td>
+    <td>{{course.Instructor}}</td>
+    <td>
+        {% for day in course.Times.Days%}
+            {{day}}
+        {% endfor %}
+    </td>
+    <td>
+        {{course.Times.Time.0}} - {{course.Times.Time.1}}
+    </td>
+    <td>{{course.Times.Dates}}</td>
+    <td>{{course.Location}}</td>
+    <td>{{course.Avail}}</td>
+    <td>{{course.Cap}}</td>
+    <td>{% dict_key_lookup course "WL Avail" %}</td>
+    <td>{{course.Restrictions}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
