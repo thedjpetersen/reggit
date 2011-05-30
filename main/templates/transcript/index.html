@@ -4,12 +4,43 @@
 
 <h1>Transcript</h1><br/><br/>
 
-{% for entry in transcript %}
-  <h4>{{ entry.Name }}</h4>
-  <span>Department: {{entry.Department}}</span><br/>
-  <span>Course Number: {{entry.CourseNumber}}</span><br/>
-  <span>Term: {{entry.Term}} </span><br/>
-  <span>Grade: {{entry.Grade}} </span><br/><br/>
+<table>
+    <tr id="table headers">
+        <th>Credits</th>
+        <th>GPA</th>
+    <tr>
+        <td>OSU Credits: {{credits.institution_credits}}</td>
+        <td>OSU GPA: {{gpa.osu_gpa}}</td>
+    </tr>
+    <tr>
+        <td>Transfer Credits: {{credits.transfer_credits}}</td>
+        <td>Transfer GPA: {{gpa.transfer_gpa}}</td>
+    </tr>
+    <tr>
+        <td>Total Credits: {{credits.total_credits}}</td>
+    </tr>
+</table>
+
+<table>
+    <tr id="table headers">
+        <th>Term</th>
+        <th>Department</th>
+        <th>Course Number</th>
+        <th>Course Title</th>
+        <th>Credits</th>
+        <th>Grade</th>  
+    </tr>
+{% for course in transcript %}
+    <tr>
+    <td>{{course.Term}}</td>
+    <td>{{course.Department}}</td>
+    <td>{{course.CourseNumber}}</td>
+    <td>{{course.Name}}</td>
+    <td>{{course.Credits}}</td>
+    <td>{{course.Grade}}</td>
+    </tr>
 {% endfor %}
+</table>
+
 
 {% endblock %}

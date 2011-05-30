@@ -1,0 +1,6 @@
+REGGIT
+Author: Kevin Ngo
+
+The Reggit is the OSU registration frontend. It is written in Django using the reglib as a backend library. Although it is Django, there is no use of databases therefore no models. There is simply one small view files and a bunch of templates. Because all of the logic is done in the backend, there is not much need in many views.
+
+When changing the backend and checking the changes in the frontend, remember to reinstall the backend package and logout/login to Reggit again because all of the data is initialized on login. The data does not change dynamically like that.
