@@ -35,22 +35,6 @@ def main(request):
     regclass = request.session['regclass']
     return render_to_response('main.html')
 
-def transcript(request):
-    if not 'regclass' in request.session:
-        return HttpResponseRedirect('/')
-
-    regclass = request.session['regclass']
-    transcript = regclass.transcript.sort_by_term()
-    return render_to_response('transcript/index.html', {'transcript':transcript, 'credits': regclass.transcript.credits, 'gpa': regclass.transcript.gpa})
-
-def schedule(request):
-    if not 'regclass' in request.session:
-        return HttpResponseRedirect('/')
-
-    regclass = request.session['regclass']
-    schedule = regclass.schedule.current_classes
-    return render_to_response('schedule/index.html', {'schedule':schedule})
-
 def scheduler(request):
     if not 'regclass' in request.session:
         return HttpResponseRedirect('/')
