@@ -29,7 +29,7 @@ $(document).ready(function(){
             }
             $(selector).addClass("selected");
             $(half_selector).addClass("selected");
-            color = "hsl(" + (Math.round(360/combinations.length)-1)*(index+1) + ",100%,48%)";
+            color = "hsl(" + (Math.round(360/combination.length)-1)*(index+1) + ",100%,48%)";
             $(selector).css("background", color + " !important");
             $(half_selector).css("background", color + " !important");
 
