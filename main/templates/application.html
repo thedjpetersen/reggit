@@ -9,23 +9,25 @@
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/screen.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/print.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/ie.css" />
+    <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/application.css" />
     {% block header %}
     {% endblock %}
   </head>
 
   <body>
+    <div id="header">
     <div class="container">
 	<div class="span-24 last">
-		<div class="span-14">
-            <h1>Reggit</h1><span id="logo">    OSU Registration<br></span>
+		<div class="span-10">
+                  <span id="logo">    OSU Registration<br></span>
 		</div>
 
-		<div class="span-10 last">
+		<div class="span-14 last">
 			{% block navigation %}
                 <span id="navigation" style="float: right;">
                     {% ifnotequal no_show_nav 1 %} 
-                        <a href="/main">Home</a> |
-                        <a href="/scheduler">Scheduler</a> |
+                        <a href="/main"><span>Home</span></a> |
+                        <a href="/scheduler"><span>Scheduler</span></a> |
                         <a href="/transcript">Transcript</a> |
                         <a href="/schedule">Current Schedule</a> |
                         <a href="/logout">Logout</a>
@@ -34,7 +36,10 @@
 			{% endblock %}
 		</div>
 
-	</div>
+              </div>
+            </div>
+          </div>
+    <div class="container">
       {% block content %}
       {% endblock %}
     </div>
