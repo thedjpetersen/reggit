@@ -1,7 +1,29 @@
+#logo{
+  color:white;
+  font-size:20px;
+}
+
 #header{
   border-top: 4px solid #2A4D4D;
+  border-bottom: 4px solid #6C8DD5;
   padding-top: 20px;
   padding-bottom: 20px;
-  background: #178D8D;
+  background: #2A4580;
   margin-bottom:10px;
+}
+
+#navigation span{
+  background: #06276F;
+  padding:8px;
+  border-radius:6px;
+  margin-right: 4px;
+}
+
+#navigation span a{
+  text-decoration: none;
+  color:white;
+}
+
+#navigation span:hover{
+  background:#6C8DD5;
 }
