@@ -1,0 +1,14 @@
+#login-bar{
+  min-height:500px;
+  border-right: 1px solid #aaa;
+}
+
+#welcome{
+  margin-bottom:0px;
+}
+
+#slogan{
+  font-style:italic;
+  color:#aaa;
+  margin-bottom:10px;
+}

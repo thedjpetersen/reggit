@@ -47,12 +47,14 @@ def scheduler(request):
     try:
         classes = request.POST['classes'].split(', ')
         term_year = request.POST['term'] + request.POST['year']
-        combinations = regclass.make_schedule(classes, term_year)
+        results = regclass.make_schedule(classes, term_year)
+        combinations = results['combinations']
+        classes_possible = results['classes_possible']
         combinations_json = json.dumps(combinations)
     except:
         return render_to_response('scheduler/index.html')
 
-    return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24)})
+    return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24), 'classes_possible':classes_possible})
 
 def show_course(request, department, course_number):
     regclass = request.session['regclass']

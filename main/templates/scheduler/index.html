@@ -72,9 +72,16 @@
   </table>
 </div>
 <div id="combinations" class="span-6 last">
+	<h5><img alt="Complete combination" src="/site_media/images/check16.png"></img> Complete combination</h5>
   {% for combination in combinations %}
   <div id="combination-{{forloop.counter}}" class="combination">
-    <h4>Combination {{forloop.counter}}</h4>
+	<h4>
+		  {% ifequal combination|length classes_possible%}
+			<img src="/site_media/images/check16.png" alt="Complete combination"></img>	
+		{% endifequal %}
+	Combination {{forloop.counter}}
+	</h4>
+    
     {% for class in combination %}
     <div class="{{class.CRN}} colorbox" style="width:10px; height:10px; display:none"></div>
       <span>({{class.Type}}) {{class.department}} {{class.course_number}} </span>
