@@ -76,7 +76,8 @@
   <div id="combination-{{forloop.counter}}" class="combination">
     <h4>Combination {{forloop.counter}}</h4>
     {% for class in combination %}
-      <span>({{class.Type}}) {{class.Dep}} {{class.Num}} </span>
+    <div class="{{class.CRN}} colorbox" style="width:10px; height:10px; display:none"></div>
+      <span>({{class.Type}}) {{class.department}} {{class.course_number}} </span>
       <span> {{class.Times.Days|join:"" }} {{ class.Times.Time|join:"-"  }}</span><br/>
     {% endfor %}
   <br/>
