@@ -13,3 +13,7 @@ td{
   height:500px;
   overflow:auto;
 }
+
+.combination-full{
+  display:none;
+}

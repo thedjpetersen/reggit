@@ -86,4 +86,11 @@ $(document).ready(function(){
       $(".hours").css("display","none");
     }
     );
+
+    $(".combination").click(function(){
+      $(".combination-full").css("display", "none");
+      combination_id = parseInt($(this).attr("id").substring(12));
+      $("#combinationfull-"+combination_id).css("display", "block");
+
+    });
 });

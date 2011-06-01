@@ -84,13 +84,48 @@
     
     {% for class in combination %}
     <div class="{{class.CRN}} colorbox" style="width:10px; height:10px; display:none"></div>
-      <span>({{class.Type}}) {{class.department}} {{class.course_number}} </span>
+      <span>({{class.Type}}) {{class.department|upper}} {{class.course_number}} </span>
       <span> {{class.Times.Days|join:"" }} {{ class.Times.Time|join:"-"  }}</span><br/>
     {% endfor %}
   <br/>
   </div>
   {% endfor %}
 </div>
+<div id="combinations-full" class="span-24 last">
+{% for combination in combinations %}
+  <div id="combinationfull-{{forloop.counter}}" class="combination-full">
+	<h3>
+		  {% ifequal combination|length classes_possible%}
+			<img src="/site_media/images/check16.png" alt="Complete combination"></img>	
+		{% endifequal %}
+	Combination {{forloop.counter}}
+	</h4>
+    <table>
+	<tr>
+		<th>Class</th>
+		<th>CRN</th>
+		<th>Type</th>
+		<th>Time</th>
+		<th>Days</th>
+		<th>Instructor</th>
+	</tr>
+    {% for class in combination %}
+    	<tr>
+		<td>{{ class.department|upper }} {{class.course_number}}</td>
+		<td>{{class.CRN}}</td>
+		<td>{{class.Type}}</td>
+		<td>{{ class.Times.Time|join:"-"  }}</td>
+		<td>{{class.Times.Days|join:"" }}</td>
+		<td>{{class.Instructor}}</td>
+	</tr>
+    {% endfor %}
+    
+    </table>
+  <br/>
+  </div>
+  {% endfor %}
+</div>
+
 {% endif %}
 
 {% endblock %}
