@@ -24,7 +24,7 @@ $(document).ready(function(){
             selector = time_selector + ">" + day_selector;
             half_selector = time_selector + "-half>" + day_selector;
             if(i==start_time){
-              name = value['Dep'].toUpperCase() + " " + value['Num'] + " (" + value["Type"] +")"
+              name = value['department'].toUpperCase() + " " + value['course_number'] + " (" + value["Type"] +")"
               $(selector).text(name);
             }
             $(selector).addClass("selected");
