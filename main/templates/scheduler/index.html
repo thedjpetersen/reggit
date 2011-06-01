@@ -6,7 +6,20 @@
 
 <form action="." method="POST">
   <span>Enter a list of classes separated commas</span><br/>
-  <input name="classes" /><input type="submit" value="Submit" />
+
+  <input name="classes" />
+  <select name="term">
+	  <option value="F">Fall</option>
+	  <option value="W">Winter</option>
+	  <option value="Sp">Spring</option>
+	  <option value="Su">Summer</option>
+  </select>
+  <select name="year">
+  	<option value="11">2011</option>
+	<option value="12">2012</option>
+	<option value="13">2013</option>
+  </select>
+  <input type="submit" value="Submit" />
   <br/>
 </form>
 
