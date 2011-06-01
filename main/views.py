@@ -6,6 +6,7 @@ import reglib
 
 def index(request):
     if 'regclass' in request.session:
+        
         return HttpResponseRedirect('/main')
     return render_to_response('index.html', {'no_show_nav': 1})
 
@@ -21,6 +22,7 @@ def login(request):
     try:
         regclass = reglib.infosu(username, password)
         request.session['regclass'] = regclass
+        request.session.set_expiry(1200)
         return HttpResponseRedirect('/main')
     except:
         return HttpResponseRedirect('/')
