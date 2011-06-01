@@ -25,26 +25,26 @@
     </tr>
 {% for course in courses %}
     <tr>
-    <td>{{course.Term}}</td>
-    <td>{{course.CRN}}</td>
-    <td>{{department}}{{course_number}}</td>
-    <td>{{course.Type}}</td>
-    <td>{{course.Cr}}</td>
-    <td>{{course.Instructor}}</td>
+    <td>{{course.term}}</td>
+    <td>{{course.crn}}</td>
+    <td>{{course.department}}{{course.number}}</td>
+    <td>{{course.type}}</td>
+    <td>{{course.credits}}</td>
+    <td>{{course.instructor}}</td>
     <td>
-        {% for day in course.Times.Days%}
+        {% for day in course.days%}
             {{day}}
         {% endfor %}
     </td>
     <td>
-        {{course.Times.Time.0}} - {{course.Times.Time.1}}
+        {{course.times.0}} - {{course.times.1}}
     </td>
-    <td>{{course.Times.Dates}}</td>
-    <td>{{course.Location}}</td>
-    <td>{{course.Avail}}</td>
-    <td>{{course.Cap}}</td>
-    <td>{% dict_key_lookup course "WL Avail" %}</td>
-    <td>{{course.Restrictions}}</td>
+    <td>{{course.duration}}</td>
+    <td>{{course.location}}</td>
+    <td>{{course.available}}</td>
+    <td>{{course.cap}}</td>
+    <td>{{course.wl_available}}</td>
+    <td>{{course.restrictions}}</td>
     </tr>
     {% endfor %}
 </table>

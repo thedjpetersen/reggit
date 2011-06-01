@@ -32,12 +32,12 @@
     </tr>
 {% for course in transcript %}
     <tr>
-    <td>{{course.Term}}</td>
-    <td>{{course.Department}}</td>
-    <td>{{course.CourseNumber}}</td>
-    <td><a href="/courses/{{course.Department}}{{course.CourseNumber}}">{{course.Name}}</a></td>
-    <td>{{course.Credits}}</td>
-    <td>{{course.Grade}}</td>
+    <td>{{course.term}}</td>
+    <td>{{course.department}}</td>
+    <td>{{course.number}}</td>
+    <td><a href="/courses/{{course.department}}{{course.number}}">{{course.title}}</a></td>
+    <td>{{course.credits}}</td>
+    <td>{{course.grade}}</td>
     </tr>
 {% endfor %}
 </table>

@@ -83,9 +83,9 @@
 	</h4>
     
     {% for class in combination %}
-    <div class="{{class.CRN}} colorbox" style="width:10px; height:10px; display:none"></div>
-      <span>({{class.Type}}) {{class.department}} {{class.course_number}} </span>
-      <span> {{class.Times.Days|join:"" }} {{ class.Times.Time|join:"-"  }}</span><br/>
+    <div class="{{class.crn}} colorbox" style="width:10px; height:10px; display:none"></div>
+      <span>({{class.type}}) {{class.department}} {{class.number}} </span>
+      <span> {{class.days|join:"" }} {{ class.times|join:"-"  }}</span><br/>
     {% endfor %}
   <br/>
   </div>

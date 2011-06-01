@@ -3,21 +3,21 @@
 {% block content %}
   <h1>Schedule</h1><br/><br/>
   {% for entry in schedule %}
-  <h4>{{entry.ClassName}}</h4>
-  <span>Type: {{ entry.ClassType }}</span></br>
-  <span>Department: {{ entry.Department }}</span></br>
-  <span>Class Number: {{ entry.ClassNumber }}</span><br/>
-  <span>Time: {{ entry.Time }}</span></br>
-  <span>Days: {{ entry.Days }}</span><br/>
-  <span>Duration: {{ entry.Duration }}</span><br/>
-  <span>Level: {{ entry.Level }}</span><br/>
-  <span>Campus: {{ entry.Campus }}</span><br/>
-  <span>Location: {{ entry.Location }}</span><br/>
-  <span>Instructor: {{ entry.Instructor }}</span><br/>
-  <span>Registration: {{ entry.Registration }}</span><br/>
-  <span>CRN: {{ entry.CRN }}</span><br/>
-  <span>Grading Mode: {{ entry.GradingMode }}</span><br/>
-  <span>Credits: {{ entry.Credits }}</span><br/><br/><br/>
+  <h4>{{entry.title}}</h4>
+  <span>Type: {{ entry.type }}</span></br>
+  <span>Department: {{ entry.department }}</span></br>
+  <span>Class Number: {{ entry.nmber }}</span><br/>
+  <span>Time: {{ entry.times }}</span></br>
+  <span>Days: {{ entry.days }}</span><br/>
+  <span>Duration: {{ entry.duration }}</span><br/>
+  <span>Level: {{ entry.level }}</span><br/>
+  <span>Campus: {{ entry.campus }}</span><br/>
+  <span>Location: {{ entry.location }}</span><br/>
+  <span>Instructor: {{ entry.instructor }}</span><br/>
+  <span>Registration: {{ entry.registration }}</span><br/>
+  <span>CRN: {{ entry.crn }}</span><br/>
+  <span>Grading Mode: {{ entry.grading_mode }}</span><br/>
+  <span>Credits: {{ entry.credits }}</span><br/><br/><br/>
 
 
 

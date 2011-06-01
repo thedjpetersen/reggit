@@ -13,8 +13,8 @@ $(document).ready(function(){
 
     //We will loop through every class in the combination
     $.each(combination, function(index, value){
-        days = value["Times"]["Days"];
-        times = value["Times"]["Time"];
+        days = value["days"];
+        times = value["times"];
 
         //Get the beginning and end of the class
         start_time = parseInt(times[0].substring(0,2), 10);
@@ -47,7 +47,7 @@ $(document).ready(function(){
             
             //If we are the first iteration through we will set the table to the title
             if(i==start_time){
-              name = value['department'].toUpperCase() + " " + value['course_number']
+              name = value['department'].toUpperCase() + " " + value['number']
               $(selector).text(name);
             }
 
@@ -58,7 +58,7 @@ $(document).ready(function(){
             $(selector).css("background", color + " !important");
             $(half_selector).css("background", color + " !important");
 
-            colorbox = "#combination-" + combination_id + " ." + value['CRN']
+            colorbox = "#combination-" + combination_id + " ." + value['crn']
 
             $(colorbox).css("display", "inline-block");
             $(colorbox).css("background", color + " !important");
