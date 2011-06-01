@@ -6,6 +6,7 @@
     </style>
                                                                                       
   <head>
+    <title>Reggit | DK awesomeness</title>
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/screen.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/print.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/ie.css" />
@@ -26,11 +27,11 @@
 			{% block navigation %}
                 <div id="navigation" style="float: right;">
                     {% ifnotequal no_show_nav 1 %} 
-                        <span><a href="/main">Home</a></span>
-                        <span><a href="/scheduler">Scheduler</a></span>
-                        <span><a href="/transcript">Transcript</a></span>
-                        <span><a href="/schedule">Current Schedule</a></span>
-                        <span><a href="/logout">Logout</a></span>
+                        <a href="/main"><span>Home</span></a>
+                        <a href="/scheduler"><span>Scheduler</span></a>
+                        <a href="/transcript"><span>Transcript</span></a>
+                        <a href="/schedule"><span>Current Schedule</span></a>
+                        <a href="/logout"><span>Logout</span></a>
                     {% endifnotequal %}
                 </div>
 			{% endblock %}

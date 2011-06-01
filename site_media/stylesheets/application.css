@@ -12,18 +12,18 @@
   margin-bottom:10px;
 }
 
-#navigation span{
+#navigation a{
+  text-decoration: none;
+  color:white;
+}
+
+#navigation a span{
   background: #06276F;
   padding:8px;
   border-radius:6px;
   margin-right: 4px;
 }
 
-#navigation span a{
-  text-decoration: none;
-  color:white;
-}
-
-#navigation span:hover{
+#navigation a span:hover{
   background:#6C8DD5;
 }

@@ -1,13 +1,25 @@
 {% extends "application.html" %}
 
+{% block header %}
+	<link rel="stylesheet" type="text/css" href="/site_media/stylesheets/index.css" />
+{% endblock %}
+
 {% block content %}
 
-<h1>Login</h1><br/></br>
+<div id="login-bar" class="span-6">
+<h3>Login</h3>
 <span>Enter your OSU ID/GAP or ONID</span>
-<form action="/login/" method="POST" align="center">
+<form action="/login/" method="POST" >
     Username:<input name="username"></input><br/>
     Password:<input type="password" name="password"></input><br/>
     <input type="submit" value="Login"><br/>
 </form>
+</div>
+
+<div class="span-17 last">
+	<h2 id="welcome">Welcome to Reggit!</h2>
+	<span id="slogan">A student project for better registration.</span>
+	<p style="margin-top:10px">The Oregon State Registration system works well, but in our opinion, not well enough. Inspired by a repeating never ending senior project, the students have set out to correct this by writing a better frontend. </p>
+</div>
 
 {% endblock %}
