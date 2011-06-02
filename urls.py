@@ -13,4 +13,5 @@ urlpatterns = patterns('',
                         (r'^schedule/$', include('schedule.urls')),
                         (r'^scheduler/$', 'main.views.scheduler'),
                         (r'^course/', include('course.urls')),
+                        (r'^planner/', 'main.views.planner'),
 )

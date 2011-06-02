@@ -4,6 +4,12 @@ import simplejson as json
 from django.http import HttpResponseRedirect
 import reglib
 
+def index(request):
+
+    regclass = request.session['regclass']
+
+    return render_to_response('course/index.html', {})
+
 def show(request, department, course_number):
     regclass = request.session['regclass']
 

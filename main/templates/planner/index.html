@@ -1,0 +1,23 @@
+{% extends "application.html" %}
+
+{% block content %}
+
+<h1>Planner</h1><br/><br/>
+
+<h3>Required Courses</h3>
+<table>
+    <tr id="table headers">
+        <th>Course</th>
+        <th>Title</th>
+        <th>Credits</th>
+    </tr>
+{% for course in required_courses %}    
+    <tr>
+    <td><a href="/course/{{course.Disc}}{{course.Num}}">{{course.Disc}}{{course.Num}}</a></td>
+    <td>{{course.Title}}</td>
+    <td>{{course.Credits}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

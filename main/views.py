@@ -21,7 +21,9 @@ def login(request):
 
     try:
         regclass = reglib.infosu(username, password)
+        audit = regclass.get_major_requirements()
         request.session['regclass'] = regclass
+        request.session['audit'] = audit
         request.session.set_expiry(1200)
         return HttpResponseRedirect('/main')
     except:
@@ -56,3 +58,16 @@ def scheduler(request):
 
     return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24), 'classes_possible':classes_possible})
 
+def planner(request):
+    if not 'regclass' in request.session:
+        return HttpResponseRedirect('/')
+
+    regclass = request.session['regclass']
+    audit = request.session['audit']
+
+    required_courses = []
+    for instance in audit.required_classes:
+        for course in instance.courses:
+            required_courses.append(course)
+
+    return render_to_response('planner/index.html', {'required_courses':required_courses})
