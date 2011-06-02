@@ -111,12 +111,12 @@
 	</tr>
     {% for class in combination %}
     	<tr>
-		<td>{{ class.department|upper }} {{class.course_number}}</td>
-		<td>{{class.CRN}}</td>
-		<td>{{class.Type}}</td>
-		<td>{{ class.Times.Time|join:"-"  }}</td>
-		<td>{{class.Times.Days|join:"" }}</td>
-		<td>{{class.Instructor}}</td>
+		<td>{{ class.department|upper }} {{class.number}}</td>
+		<td>{{class.crn}}</td>
+		<td>{{class.type}}</td>
+		<td>{{ class.times|join:"-"  }}</td>
+		<td>{{class.days|join:"" }}</td>
+		<td>{{class.instructor}}</td>
 	</tr>
     {% endfor %}
     
