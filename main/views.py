@@ -21,9 +21,7 @@ def login(request):
 
     try:
         regclass = reglib.infosu(username, password)
-        audit = regclass.get_major_requirements()
         request.session['regclass'] = regclass
-        request.session['audit'] = audit
         request.session.set_expiry(1200)
         return HttpResponseRedirect('/main')
     except:
@@ -63,10 +61,9 @@ def planner(request):
         return HttpResponseRedirect('/')
 
     regclass = request.session['regclass']
-    audit = request.session['audit']
 
     required_courses = []
-    for instance in audit.required_classes:
+    for instance in regclass.audit.required_classes:
         for course in instance.courses:
             required_courses.append(course)
 
