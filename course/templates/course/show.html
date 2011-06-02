@@ -4,7 +4,8 @@
 {% block content %}
 
 <h1>{{department|upper}}{{course_number}}</h1><br/>
-<h6><a href="http://catalog.oregonstate.edu/CourseDetail.aspx?Columns=abcdefghijklmnopqrstuvwxyz&SubjectCode={{department}}&CourseNumber={{course_number}}&Campus=corvallis">Class Catalog Entry</a></h6>
+<h3>{{courses.0.title}}</h3>
+<h4>{{courses.0.description}}</h4>
 
 <table>
     <tr id="table headers">
@@ -50,5 +51,7 @@
     </tr>
     {% endfor %}
 </table>
+
+<h6><a href="http://catalog.oregonstate.edu/CourseDetail.aspx?Columns=abcdefghijklmnopqrstuvwxyz&SubjectCode={{department}}&CourseNumber={{course_number}}&Campus=corvallis">Class Catalog Entry</a></h6>
 
 {% endblock %}
