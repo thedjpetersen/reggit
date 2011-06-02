@@ -84,7 +84,7 @@
     
     {% for class in combination %}
     <div class="{{class.crn}} colorbox" style="width:10px; height:10px; display:none"></div>
-      <span>({{class.type}}) {{class.department}} {{class.number}} </span>
+      <span>({{class.type}}) {{class.department|upper}} {{class.number}} </span>
       <span> {{class.days|join:"" }} {{ class.times|join:"-"  }}</span><br/>
     {% endfor %}
   <br/>
@@ -109,14 +109,14 @@
 		<th>Days</th>
 		<th>Instructor</th>
 	</tr>
-    {% for class in combination %}
+    {% for course in combination %}
     	<tr>
-		<td>{{ class.department|upper }} {{class.course_number}}</td>
-		<td>{{class.CRN}}</td>
-		<td>{{class.Type}}</td>
-		<td>{{ class.Times.Time|join:"-"  }}</td>
-		<td>{{class.Times.Days|join:"" }}</td>
-		<td>{{class.Instructor}}</td>
+		<td><a href="/course/{{course.department|upper}}{{course.number}}">{{course.department|upper}} {{course.number}}</a></td>
+		<td>{{course.crn}}</td>
+		<td>{{course.type}}</td>
+		<td>{{course.times|join:"-"  }}</td>
+		<td>{{course.days|join:"" }}</td>
+		<td>{{course.instructor}}</td>
 	</tr>
     {% endfor %}
     

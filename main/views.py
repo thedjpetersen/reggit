@@ -56,12 +56,3 @@ def scheduler(request):
 
     return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24), 'classes_possible':classes_possible})
 
-def show_course(request, department, course_number):
-    regclass = request.session['regclass']
-
-    courses = regclass.class_search(department, course_number)
-    if courses is None:
-        raise Http404 
-    
-    return render_to_response('courses/show.html', {'courses': courses, 'department': department, 'course_number': course_number})
-    

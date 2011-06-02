@@ -82,5 +82,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'main',
     'schedule',
-    'transcript'
+    'transcript',
+    'course',
 )

@@ -3,14 +3,14 @@
 
 {% block content %}
 
-<h1>{{department}}{{course_number}}</h1><br/>
+<h1>{{department|upper}}{{course_number}}</h1><br/>
 <h6><a href="http://catalog.oregonstate.edu/CourseDetail.aspx?Columns=abcdefghijklmnopqrstuvwxyz&SubjectCode={{department}}&CourseNumber={{course_number}}&Campus=corvallis">Class Catalog Entry</a></h6>
 
 <table>
     <tr id="table headers">
         <th>Term</th>
-        <th>CRN</th>
         <th>Course</th>
+        <th>CRN</th>
         <th>Type</th>
         <th>Credits</th>
         <th>Instructor</th>
@@ -22,12 +22,13 @@
         <th>Cap</th>
         <th>Available Waitlist</th>
         <th>Restrictions</th>
+        <th>Click to Register</th>
     </tr>
 {% for course in courses %}
     <tr>
     <td>{{course.term}}</td>
-    <td>{{course.crn}}</td>
     <td>{{course.department}}{{course.number}}</td>
+    <td>{{course.crn}}</td>
     <td>{{course.type}}</td>
     <td>{{course.credits}}</td>
     <td>{{course.instructor}}</td>
@@ -45,6 +46,7 @@
     <td>{{course.cap}}</td>
     <td>{{course.wl_available}}</td>
     <td>{{course.restrictions}}</td>
+    <td><a href="register/{{course.crn}}"><button>Register</button></a></td>
     </tr>
     {% endfor %}
 </table>
