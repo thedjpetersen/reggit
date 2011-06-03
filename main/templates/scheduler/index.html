@@ -103,20 +103,22 @@
     <table>
 	<tr>
 		<th>Class</th>
-		<th>CRN</th>
+		<th>Title</th>
 		<th>Type</th>
-		<th>Time</th>
-		<th>Days</th>
 		<th>Instructor</th>
+		<th>Days</th>
+		<th>Time</th>
+		<th>CRN</th>
 	</tr>
     {% for course in combination %}
     	<tr>
 		<td><a href="/course/{{course.department|upper}}{{course.number}}">{{course.department|upper}} {{course.number}}</a></td>
-		<td>{{course.crn}}</td>
+		<td>{{course.title}}</td>
 		<td>{{course.type}}</td>
-		<td>{{course.times|join:"-"  }}</td>
-		<td>{{course.days|join:"" }}</td>
 		<td>{{course.instructor}}</td>
+		<td>{{course.days|join:"" }}</td>
+		<td>{{course.times|join:"-"  }}</td>
+		<td>{{course.crn}}</td>
 	</tr>
     {% endfor %}
     

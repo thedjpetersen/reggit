@@ -1,5 +1,6 @@
 from  django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
+import simplejson as json
 
 
 # Create your views here.
@@ -10,6 +11,8 @@ def index(request):
 
     regclass = request.session['regclass']
     schedule = regclass.schedule.current_classes
-    return render_to_response('schedule/index.html', {'schedule':schedule})
+    schedule_json = json.dumps(schedule)
+
+    return render_to_response('schedule/index.html', {'schedule':schedule, 'range':range(24), 'json':schedule_json})
 
 

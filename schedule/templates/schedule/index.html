@@ -1,25 +1,77 @@
 {% extends "application.html" %} 
 
 {% block content %}
-  <h1>Schedule</h1><br/><br/>
-  {% for entry in schedule %}
-  <h4>{{entry.title}}</h4>
-  <span>Type: {{ entry.type }}</span></br>
-  <span>Department: {{ entry.department }}</span></br>
-  <span>Class Number: {{ entry.nmber }}</span><br/>
-  <span>Time: {{ entry.times }}</span></br>
-  <span>Days: {{ entry.days }}</span><br/>
-  <span>Duration: {{ entry.duration }}</span><br/>
-  <span>Level: {{ entry.level }}</span><br/>
-  <span>Campus: {{ entry.campus }}</span><br/>
-  <span>Location: {{ entry.location }}</span><br/>
-  <span>Instructor: {{ entry.instructor }}</span><br/>
-  <span>Registration: {{ entry.registration }}</span><br/>
-  <span>CRN: {{ entry.crn }}</span><br/>
-  <span>Grading Mode: {{ entry.grading_mode }}</span><br/>
-  <span>Credits: {{ entry.credits }}</span><br/><br/><br/>
 
+<h1>Schedule</h1><br/><br/>
 
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css"/>
+    <script type="text/javascript" src="/site_media/javascripts/jquery-min.js"></script>
+    <script>schedule = {{json|safe}}</script>
+    <script type="text/javascript" src="/site_media/javascripts/schedule.js"></script>
+{% endblock %}
 
-  {% endfor %}
+<div class="span-24 last">
+    <div class="span-18">
+        <table>
+            <tr id="headers">
+                <th>Hour</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+            </tr>
+            {% for hour in range %}
+            <tr id="hour-{{hour}}" class="hours">
+                <td class="Hour">{{hour}}:00</td>
+                <td class="Monday"></td>
+                <td class="Tuesday"></td>
+                <td class="Wednesday"></td>
+                <td class="Thursday"></td>
+                <td class="Friday"></td>
+                <td class="Saturday"></td>
+                <td class="Sunday"></td>
+            </tr>
+            <tr id="hour-{{hour}}-half" class="hours">
+                <td class="Hour">{{hour}}:30</td>
+                <td class="Monday"></td>
+                <td class="Tuesday"></td>
+                <td class="Wednesday"></td>
+                <td class="Thursday"></td>
+                <td class="Friday"></td>
+                <td class="Saturday"></td>
+                <td class="Sunday"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <table>
+	<tr>
+		<th>Class</th>
+        <th>Title</th>
+		<th>Type</th>
+		<th>Instructor</th>
+		<th>Days</th>
+		<th>Time</th>
+		<th>CRN</th>
+	</tr>
+    {% for course in schedule %}
+    	<tr>
+		<td><a href="/course/{{course.department|upper}}{{course.number}}">{{course.department|upper}} {{course.number}}</a></td>
+        <td>{{course.title}}</td>
+        <td>{{course.type}}</td>
+		<td>{{course.instructor}}</td>
+		<td>{{course.days|join:"" }}</td>
+		<td>{{course.times|join:"-"  }}</td>
+		<td>{{course.crn}}</td>
+	</tr>
+    {% endfor %}
+    
+    </table>
+
+</div>
 {% endblock %}
