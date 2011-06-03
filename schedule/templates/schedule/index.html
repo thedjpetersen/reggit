@@ -55,6 +55,7 @@
         <th>Title</th>
 		<th>Type</th>
 		<th>Instructor</th>
+        <th>Location</th>
 		<th>Days</th>
 		<th>Time</th>
 		<th>CRN</th>
@@ -65,6 +66,7 @@
         <td>{{course.title}}</td>
         <td>{{course.type}}</td>
 		<td>{{course.instructor}}</td>
+        <td>{{course.location.building}} {{course.location.room}}</td>
 		<td>{{course.days|join:"" }}</td>
 		<td>{{course.times|join:"-"  }}</td>
 		<td>{{course.crn}}</td>
