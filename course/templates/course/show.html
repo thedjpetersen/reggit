@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1>{{department|upper}}{{course_number}}</h1><br/>
+<h1>{{courses.0.department|upper}}{{courses.0.number}}</h1><br/>
 <h3>{{courses.0.title}}</h3>
 <h4>{{courses.0.description}}</h4>
 

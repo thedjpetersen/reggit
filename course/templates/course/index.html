@@ -4,4 +4,15 @@
 
 <h1>Courses</h1><br/><br/>
 
+<form action="." method="POST">
+    <span>Enter a course for course information.</span><br/>
+    <input name="course"/>
+    <input type="submit" value="Search"/>
+    <br/>
+</form>
+
+{% if course_not_found %}
+    <span><b>{{course_not_found}}</b> was not found</span>
+{% endif %}
+
 {% endblock %}
