@@ -3,55 +3,63 @@
 
 {% block content %}
 
+{% if courses %}
+
 <h1>{{courses.0.department|upper}}{{courses.0.number}}</h1><br/>
 <h3>{{courses.0.title}}</h3>
 <h4>{{courses.0.description}}</h4>
 
-<table>
-    <tr id="table headers">
-        <th>Term</th>
-        <th>Course</th>
-        <th>CRN</th>
-        <th>Type</th>
-        <th>Credits</th>
-        <th>Instructor</th>
-        <th>Days</th>
-        <th>Time</th>
-        <th>Dates</th>
-        <th>Location</th>
-        <th>Available Spots</th>
-        <th>Cap</th>
-        <th>Available Waitlist</th>
-        <th>Restrictions</th>
-        <th>Click to Register</th>
-    </tr>
-{% for course in courses %}
-    <tr>
-    <td>{{course.term}}</td>
-    <td>{{course.department}}{{course.number}}</td>
-    <td>{{course.crn}}</td>
-    <td>{{course.type}}</td>
-    <td>{{course.credits}}</td>
-    <td>{{course.instructor}}</td>
-    <td>
-        {% for day in course.days%}
-            {{day}}
+<form action="." method="post">
+    <table>
+        <tr id="table headers">
+            <th>Term</th>
+            <th>Course</th>
+            <th>CRN</th>
+            <th>Type</th>
+            <th>Credits</th>
+            <th>Instructor</th>
+            <th>Days</th>
+            <th>Time</th>
+            <th>Dates</th>
+            <th>Location</th>
+            <th>Available Spots</th>
+            <th>Cap</th>
+            <th>Available Waitlist</th>
+            <th>Restrictions</th>
+            <th><input type="submit" name="register" value="Register"></th>
+        </tr>
+    {% for course in courses %}
+        <tr>
+        <td>{{course.term}}</td>
+        <td>{{course.department|upper}}{{course.number}}</td>
+        <td>{{course.crn}}</td>
+        <td>{{course.type}}</td>
+        <td>{{course.credits}}</td>
+        <td>{{course.instructor}}</td>
+        <td>
+            {% for day in course.days%}
+                {{day}}
+            {% endfor %}
+        </td>
+        <td>
+            {{course.times.0}} - {{course.times.1}}
+        </td>
+        <td>{{course.duration}}</td>
+        <td>{{course.location}}</td>
+        <td>{{course.available}}</td>
+        <td>{{course.cap}}</td>
+        <td>{{course.wl_available}}</td>
+        <td>{{course.restrictions}}</td>
+        <td><input type="checkbox" name="choose" value={{course.crn}}></td>
+        </tr>
         {% endfor %}
-    </td>
-    <td>
-        {{course.times.0}} - {{course.times.1}}
-    </td>
-    <td>{{course.duration}}</td>
-    <td>{{course.location}}</td>
-    <td>{{course.available}}</td>
-    <td>{{course.cap}}</td>
-    <td>{{course.wl_available}}</td>
-    <td>{{course.restrictions}}</td>
-    <td><a href="/register/{{course.crn}}"><button>Register</button></a></td>
-    </tr>
-    {% endfor %}
-</table>
+    </table>
+</form>
 
 <h6><a href="http://catalog.oregonstate.edu/CourseDetail.aspx?Columns=abcdefghijklmnopqrstuvwxyz&SubjectCode={{department}}&CourseNumber={{course_number}}&Campus=corvallis">Class Catalog Entry</a></h6>
+
+{% else %}
+    <h1>The course you seek is in another castle</h1>
+{% endif %}
 
 {% endblock %}

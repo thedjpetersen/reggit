@@ -24,8 +24,7 @@
 <table>
     <tr id="table headers">
         <th>Term</th>
-        <th>Department</th>
-        <th>Course Number</th>
+        <th>Course</th>
         <th>Course Title</th>
         <th>Credits</th>
         <th>Grade</th>  
@@ -33,9 +32,8 @@
 {% for course in transcript %}
     <tr>
     <td>{{course.term}}</td>
-    <td>{{course.department}}</td>
-    <td>{{course.number}}</td>
-    <td><a href="/course/{{course.department}}{{course.number}}">{{course.title}}</a></td>
+    <td><a href="/course/{{course.department}}{{course.number}}">{{course.department}}{{course.number}}</td>
+    <td>{{course.title}}</td>
     <td>{{course.credits}}</td>
     <td>{{course.grade}}</td>
     </tr>
