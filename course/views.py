@@ -36,8 +36,7 @@ def show(request, department, number, status=''):
         regerror = 1
 
     # to come back when redirecting to a different view func
-    request.session['department'] = department
-    request.session['number'] = number
+    request.session['prevcourse'] = department+number
 
     courses = regclass.class_search(department, number)
     if courses is None:
@@ -60,6 +59,6 @@ def register(request, crn1, crn2=""):
     error = regclass.add_class(crn1, crn2)
     
     if error:
-        return HttpResponseRedirect('/course/' + request.session['department'] + request.session['number'] + '?status=error')
-    return HttpResponseRedirect('/course/' + request.session['department'] + request.session['number'] + '?status=success')
+        return HttpResponseRedirect('/course/' + request.session['prevcourse'] + '?status=error')
+    return HttpResponseRedirect('/course/' + request.session['prevcourse'] + '?status=success')
   
