@@ -25,7 +25,7 @@ def index(request):
     except:
         return render_to_response('course/index.html', {'course_not_found':course})
 
-    return render_to_response('course/show.html', {'courses': courses}) 
+    return HttpResponseRedirect('/course/' + department + number + '/') 
 
 
 def show(request, department, number, status=''):
@@ -56,6 +56,7 @@ def show(request, department, number, status=''):
 
 def register(request, crn1, crn2=""):    
     """ register via parsing the url and calling the add_class """ 
+
     regclass = request.session['regclass']
 
     error = regclass.add_class(crn1, crn2)
