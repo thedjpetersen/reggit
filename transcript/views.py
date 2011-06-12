@@ -1,6 +1,6 @@
 from  django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
-import registration
+import reglib
 
 
 # Create your views here.

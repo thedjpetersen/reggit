@@ -37,12 +37,18 @@
         <td>{{course.credits}}</td>
         <td>{{course.instructor}}</td>
         <td>
-            {% for day in course.days%}
-                {{day}}
-            {% endfor %}
+            {% ifnotequal course.days "TBA" %}
+                {{course.days|join:""}}
+            {% else %}
+                {{ course.days }}
+            {% endifnotequal %}
         </td>
         <td>
-            {{course.times.0}} - {{course.times.1}}
+            {% ifnotequal course.times "TBA" %}
+                {{course.times|join:"-"}}
+            {% else %}
+                {{course.times}}
+            {% endifnotequal %}
         </td>
         <td>{{course.duration}}</td>
         <td>{{course.location}}</td>

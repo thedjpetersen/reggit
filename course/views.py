@@ -27,6 +27,7 @@ def index(request):
 
     return render_to_response('course/show.html', {'courses': courses}) 
 
+
 def show(request, department, number, status=''):
     """ shows information about single course and can register from here """
     regclass = request.session['regclass']
@@ -41,7 +42,7 @@ def show(request, department, number, status=''):
     courses = regclass.class_search(department, number)
     if courses is None:
         raise Http404 
-        
+
     if request.method == 'GET': 
         return render_to_response('course/show.html', {'courses':courses, 'regerror': regerror}) 
 
@@ -51,6 +52,7 @@ def show(request, department, number, status=''):
         return HttpResponseRedirect('/course/register/' + crn_list_reg[0])
     else:
         return HttpResponseRedirect('/course/register/' + crn_list_reg[0] + "&" + crn_list_reg[1])
+
 
 def register(request, crn1, crn2=""):    
     """ register via parsing the url and calling the add_class """ 

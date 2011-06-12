@@ -1,5 +1,7 @@
 {% extends "application.html" %}
 
+{% load utilities %}
+
 {% block content %}
 
 <h1>Scheduler</h1><br/><br/>
@@ -85,7 +87,12 @@
     {% for class in combination %}
     <div class="{{class.crn}} colorbox" style="width:10px; height:10px; display:none"></div>
       <span>({{class.type}}) {{class.department|upper}} {{class.number}} </span>
-      <span> {{class.days|join:"" }} {{ class.times|join:"-"  }}</span><br/>
+      <span> 
+        {% ifnotequal class.times "TBA" %}
+            {{class.days|join:"" }} 
+            {{ class.times|join:"-" }}
+        {% endifnotequal %}
+      </span><br/>
     {% endfor %}
   <br/>
   </div>
@@ -117,7 +124,11 @@
 		<td>{{course.type}}</td>
 		<td>{{course.instructor}}</td>
 		<td>{{course.days|join:"" }}</td>
-		<td>{{course.times|join:"-"  }}</td>
+        {% ifnotequal course.times "TBA" %}
+    		<td>{{course.times|join:"-"  }}</td>
+        {% else %}
+            <td>TBA</td>
+        {% endifnotequal %}
 		<td>{{course.crn}}</td>
 	</tr>
     {% endfor %}
