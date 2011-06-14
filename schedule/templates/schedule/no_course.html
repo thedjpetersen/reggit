@@ -1,0 +1,15 @@
+{% extends "application.html" %} 
+
+{% block content %}
+
+<h1>Schedule</h1><br/><br/>
+
+{% if current_term %}
+    <h4><a href="next_term/">Next Term >></a></h4>
+{% else %}
+    <h4><a href="/schedule/">&#060;&#060; Current Term</a></h4>
+{% endif %}
+
+<h3>No courses registered for this term</h3>
+
+{% endblock %}
