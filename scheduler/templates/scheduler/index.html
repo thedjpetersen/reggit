@@ -118,6 +118,8 @@
 		<th>Time</th>
 		<th>CRN</th>
 	</tr>
+
+    <form action='.' method='POST'>
     {% for course in combination %}
     	<tr>
 		<td><a href="/course/{{course.department|upper}}{{course.number}}">{{course.department|upper}} {{course.number}}</a></td>
@@ -132,9 +134,10 @@
         {% endifnotequal %}
 		<td>{{course.crn}}</td>
 	    </tr>
+        <input type="hidden" name="course{{forloop.counter}}" value={{course.department|upper}}{{course.number}} />
+        <input type="hidden" name="crn{{forloop.counter}}" value={{course.crn}} />
     {% endfor %}
     </table>
-    <form action='.' method='POST'>
         <input type="hidden" name="courses" value="{{combination}}" />
         <input type="submit" name="register" value="Register" />
     </form>
