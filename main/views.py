@@ -14,13 +14,13 @@ def login(request):
     if 'regclass' in request.session:
         return HttpResponseRedirect('/main')
     if request.method == 'GET':
-        return render_to_response('index.html')
+        return HttpResponseRedirect('/')
     
     username = request.POST['username']
     password = request.POST['password']
 
     try:
-        regclass = reglib.infosu(username, password)
+        regclass = reglib.infosu(username, password, True)
         request.session['regclass'] = regclass
         request.session.set_expiry(1200)
         return HttpResponseRedirect('/main')
