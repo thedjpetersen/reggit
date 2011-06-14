@@ -36,18 +36,37 @@
     padding-bottom: 170px;
 }
 
-#navigation a{
-  text-decoration: none;
-  color:white;
+#navigation ul{
+  list-style:none;
 }
 
-#navigation a span{
+#navigation ul li{
+  display:inline;
+  list-style-type:none;
+}
+
+#navigation ul li div{
+  display:none;
+  position:absolute;
+}
+
+#navigation ul li div ul{
+  padding-left:0px;
+  margin-top:20px;
+}
+
+#navigation a{
+  text-decoration: none;
+}
+
+#navigation span{
   background: #06276F;
   padding:8px;
   border-radius:6px;
+  color:white;
   margin-right: 4px;
 }
 
-#navigation a span:hover{
+#navigation span:hover{
   background:#6C8DD5;
 }

@@ -12,6 +12,19 @@
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/ie.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/sticky_footer.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/application.css" />
+    <script type="text/javascript" src="/site_media/javascripts/jquery-min.js" ></script>
+    <script>
+      $(document).ready(function(){
+        $("#navigation > ul > li").hover(
+        function(){
+          $(this).find("div").css("display", "block");
+        },
+        function(){
+          $(this).find("div").css("display", "none");
+        }
+        );
+      });
+    </script>
     {% block header %}
     {% endblock %}
   </head>
@@ -27,18 +40,43 @@
 
                 <div class="span-20 last">
                   {% block navigation %}
-                            <div id="navigation" style="float: right;">
+                          <div id="navigation" style="float: right">
                                 {% ifnotequal no_show_nav 1 %} 
-                                    <a href="/main"><span>Home</span></a>
-                                    <a href="/course"><span>Courses</span></a>
-                                    <a href="/schedule"><span>Schedule</span></a>
-                                    <a href="/scheduler"><span>Scheduler</span></a>
-                                    <a href="/planner"><span>Planner</span></a>
-                                    <a href="/transcript"><span>Transcript</span></a>
-                                    <a href="/logout"><span>Logout</span></a>
+                                <ul>
+                                  <li>
+                                    <span>Past</span>
+                                    <div>
+                                      <ul>
+                                        <li><a href="/transcript"><span>Transcript</span></a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+
+                                  <li>
+                                    <span>Present</span>
+                                    <div>
+                                      <ul>
+                                        <li><a href="/schedule"><span>Schedule</span></a></li>
+                                        <li><a href="/course"><span>Courses</span></a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+
+                                  <li>
+                                    <span>Future</span>
+                                    <div>
+                                      <ul>
+                                        <li><a href="/scheduler"><span>Scheduler</span></a></li>
+                                        <li><a href="/planner"><span>Planner</span></a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+
+                                  <li><a href="/logout"><span>Logout</span></a></li>
+                                </ul>
                                 {% endifnotequal %}
-                            </div>
-                  {% endblock %}
+                              </div>
+                    {% endblock %}
                 </div>
 
               </div>
