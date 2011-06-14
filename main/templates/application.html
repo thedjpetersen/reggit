@@ -10,42 +10,51 @@
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/screen.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/print.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/ie.css" />
+    <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/sticky_footer.css" />
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/application.css" />
     {% block header %}
     {% endblock %}
   </head>
 
   <body>
-    <div id="header">
-    <div class="container">
-	<div class="span-24 last">
-		<div class="span-4">
-                  <span id="logo">Reggit<br></span>
-		</div>
-
-		<div class="span-20 last">
-			{% block navigation %}
-                <div id="navigation" style="float: right;">
-                    {% ifnotequal no_show_nav 1 %} 
-                        <a href="/main"><span>Home</span></a>
-                        <a href="/course"><span>Courses</span></a>
-                        <a href="/schedule"><span>Schedule</span></a>
-                        <a href="/scheduler"><span>Scheduler</span></a>
-                        <a href="/planner"><span>Planner</span></a>
-                        <a href="/transcript"><span>Transcript</span></a>
-                        <a href="/logout"><span>Logout</span></a>
-                    {% endifnotequal %}
+    <div id="wrap">
+      <div id="header">
+      <div class="container">
+              <div class="span-24 last">
+                <div class="span-4">
+                              <span id="logo">Reggit<br></span>
                 </div>
-			{% endblock %}
-		</div>
+
+                <div class="span-20 last">
+                  {% block navigation %}
+                            <div id="navigation" style="float: right;">
+                                {% ifnotequal no_show_nav 1 %} 
+                                    <a href="/main"><span>Home</span></a>
+                                    <a href="/course"><span>Courses</span></a>
+                                    <a href="/schedule"><span>Schedule</span></a>
+                                    <a href="/scheduler"><span>Scheduler</span></a>
+                                    <a href="/planner"><span>Planner</span></a>
+                                    <a href="/transcript"><span>Transcript</span></a>
+                                    <a href="/logout"><span>Logout</span></a>
+                                {% endifnotequal %}
+                            </div>
+                  {% endblock %}
+                </div>
 
               </div>
             </div>
           </div>
-    <div class="container">
+    <div id="main" class="container">
       {% block content %}
       {% endblock %}
     </div>
+  </div>
+
+  <div id="footer">
+    <div class="container">
+      <span>Courtesy of your fellow students.</span>
+    </div>
+  </div>
   </body>
 
 </html>

@@ -12,6 +12,30 @@
   margin-bottom:10px;
 }
 
+#footer
+{
+    background: #2A4580;
+    border-top:8px solid #2A4D4D;
+    /* We can over-ride default settings here instead of changing the original
+       sticky-footer.css */
+    padding-top: 10px;
+    height: 40px;
+    margin-top: -40px;
+}
+
+#footer div{
+  text-align:center;
+}
+
+#footer span{
+  color:white;
+}
+
+#main
+{
+    padding-bottom: 170px;
+}
+
 #navigation a{
   text-decoration: none;
   color:white;
