@@ -107,6 +107,7 @@
 		{% endifequal %}
 	Combination {{forloop.counter}}
 	</h4>
+
     <table>
 	<tr>
 		<th>Class</th>
@@ -130,10 +131,13 @@
             <td>TBA</td>
         {% endifnotequal %}
 		<td>{{course.crn}}</td>
-	</tr>
+	    </tr>
     {% endfor %}
-    
     </table>
+    <form action='.' method='POST'>
+        <input type="hidden" name="courses" value="{{combination}}" />
+        <input type="submit" name="register" value="Register" />
+    </form>
   <br/>
   </div>
   {% endfor %}
