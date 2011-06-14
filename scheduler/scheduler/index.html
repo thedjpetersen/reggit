@@ -1,0 +1,144 @@
+{% extends "application.html" %}
+
+{% load utilities %}
+
+{% block content %}
+
+<h1>Scheduler</h1><br/><br/>
+
+<form action="." method="POST">
+  <span>Enter a list of classes separated commas</span><br/>
+
+  <input name="classes" />
+  <select name="term">
+	  <option value="F">Fall</option>
+	  <option value="W">Winter</option>
+	  <option value="Sp">Spring</option>
+	  <option value="Su">Summer</option>
+  </select>
+  <select name="year">
+  	<option value="11">2011</option>
+	<option value="12">2012</option>
+	<option value="13">2013</option>
+  </select>
+  <input type="submit" value="Submit" />
+  <br/>
+</form>
+
+{% if combinations %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css" />
+    <script type="text/javascript" src="/site_media/javascripts/jquery-min.js" ></script>
+    <script>
+	    combinations = {{json|safe}}
+    </script>
+    
+    <script type="text/javascript" src="/site_media/javascripts/make_schedule.js" ></script>
+{% endblock %}
+<div class="span-24 last">
+  <div class="span-18">
+    <table>
+      <tr id="headers">
+        <th>Hour</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+      {% for hour in range %}
+      <tr id="hour-{{hour}}" class="hours">
+        <td class="Hour">{{hour}}:00</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      <tr id="hour-{{hour}}-half" class="hours">
+        <td class="Hour">{{hour}}:30</td>
+        <td class="Monday"></td>
+        <td class="Tuesday"></td>
+        <td class="Wednesday"></td>
+        <td class="Thursday"></td>
+        <td class="Friday"></td>
+        <td class="Saturday"></td>
+        <td class="Sunday"></td>
+      </tr>
+      {% endfor %}
+  </table>
+</div>
+<div id="combinations" class="span-6 last">
+	<h5><img alt="Complete combination" src="/site_media/images/check16.png"></img> Complete combination</h5>
+  {% for combination in combinations %}
+  <div id="combination-{{forloop.counter}}" class="combination">
+	<h4>
+		  {% ifequal combination|length classes_possible%}
+			<img src="/site_media/images/check16.png" alt="Complete combination"></img>	
+		{% endifequal %}
+	Combination {{forloop.counter}}
+	</h4>
+    
+    {% for class in combination %}
+    <div class="{{class.crn}} colorbox" style="width:10px; height:10px; display:none"></div>
+      <span>({{class.type}}) {{class.department|upper}} {{class.number}} </span>
+      <span> 
+        {% ifnotequal class.times "TBA" %}
+            {{class.days|join:"" }} 
+            {{ class.times|join:"-" }}
+        {% endifnotequal %}
+      </span><br/>
+    {% endfor %}
+  <br/>
+  </div>
+  {% endfor %}
+</div>
+<div id="combinations-full" class="span-24 last">
+{% for combination in combinations %}
+  <div id="combinationfull-{{forloop.counter}}" class="combination-full">
+	<h3>
+		  {% ifequal combination|length classes_possible%}
+			<img src="/site_media/images/check16.png" alt="Complete combination"></img>	
+		{% endifequal %}
+	Combination {{forloop.counter}}
+	</h4>
+    <table>
+	<tr>
+		<th>Class</th>
+		<th>Title</th>
+		<th>Type</th>
+		<th>Instructor</th>
+		<th>Days</th>
+		<th>Time</th>
+		<th>CRN</th>
+	</tr>
+    {% for course in combination %}
+    	<tr>
+		<td><a href="/course/{{course.department|upper}}{{course.number}}">{{course.department|upper}} {{course.number}}</a></td>
+		<td>{{course.title}}</td>
+		<td>{{course.type}}</td>
+		<td>{{course.instructor}}</td>
+		<td>{{course.days|join:"" }}</td>
+        {% ifnotequal course.times "TBA" %}
+    		<td>{{course.times|join:"-"  }}</td>
+        {% else %}
+            <td>TBA</td>
+        {% endifnotequal %}
+		<td>{{course.crn}}</td>
+	</tr>
+    {% endfor %}
+    
+    </table>
+  <br/>
+  </div>
+  {% endfor %}
+</div>
+
+{% endif %}
+
+{% endblock %}
