@@ -11,7 +11,8 @@ urlpatterns = patterns('',
                         (r'^main/$', 'main.views.main'),
                         (r'^transcript/$', include('transcript.urls')),
                         (r'^schedule/$', include('schedule.urls')),
-                        (r'^scheduler/$', 'main.views.scheduler'),
+                        (r'^scheduler/$', include('scheduler.urls')),
                         (r'^course/', include('course.urls')),
                         (r'^planner/', 'main.views.planner'),
 )
+

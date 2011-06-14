@@ -84,4 +84,5 @@ INSTALLED_APPS = (
     'schedule',
     'transcript',
     'course',
+    'scheduler',
 )
