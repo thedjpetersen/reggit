@@ -1,0 +1,40 @@
+.group{
+  margin-bottom:30px;
+}
+
+.report-class{
+  margin:10px;
+}
+
+.report-class span{
+  font-size:1.3em;
+}
+
+.cn{
+  font-size:1.3em;
+}
+
+.grade{
+  font-size:1.5em;
+  font-weight:bold;
+}
+
+.grade-A{
+  color:#008500;
+}
+
+.grade-B{
+  color:#006363;
+}
+
+.grade-C{
+  color:#A66F00;
+}
+
+.grade-D{
+  color:#A64B00;
+}
+
+.grade-F{
+  color:#A60000;
+}
