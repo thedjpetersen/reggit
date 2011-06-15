@@ -13,4 +13,5 @@ def index(request):
     transcript = regclass.transcript.sort_by_term()
     return render_to_response('transcript/index.html', {'transcript':transcript, 'credits': regclass.transcript.credits, 'gpa': regclass.transcript.gpa})
 
-
+def report_card(request):
+    return render_to_response('transcript/report_card.html')
