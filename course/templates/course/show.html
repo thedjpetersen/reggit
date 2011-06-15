@@ -56,7 +56,11 @@
         <td>{{course.cap}}</td>
         <td>{{course.wl_available}}</td>
         <td>{{course.restrictions}}</td>
-        <td><input type="checkbox" name="choose" value={{course.crn}}></td>
+        {% if not course.conflict %}
+            <td><input type="checkbox" name="choose" value={{course.crn}}></td>
+        {% else %}
+            <td>Time conflict with {{course.conflict}}</td>
+        {% endif %}
         </tr>
         {% endfor %}
     </table>

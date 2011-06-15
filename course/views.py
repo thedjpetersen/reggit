@@ -44,6 +44,7 @@ def show(request, department, number, status=''):
         raise Http404 
 
     if request.method == 'GET': 
+        find_time_conflicts(regclass, courses)
         return render_to_response('course/show.html', {'courses':courses, 'regerror': regerror}) 
 
     # user sumbitted crns to register for courses, use urls to redirect to register view
@@ -52,7 +53,6 @@ def show(request, department, number, status=''):
         return HttpResponseRedirect('/course/register/' + crn_list_reg[0])
     else:
         return HttpResponseRedirect('/course/register/' + crn_list_reg[0] + "&" + crn_list_reg[1])
-
 
 def register(request, crn1, crn2=""):    
     """ register via parsing the url and calling the add_class """ 
@@ -64,4 +64,22 @@ def register(request, crn1, crn2=""):
     if error:
         return HttpResponseRedirect('/course/' + request.session['prevcourse'] + '?status=error')
     return HttpResponseRedirect('/course/' + request.session['prevcourse'] + '?status=success')
+  
+def find_time_conflicts(regclass, courses):
+    """ given a list of courses, checks current and next schedule for time conflicts """
+    schedules = [regclass.schedule, regclass.next_schedule]
+    for schedule in schedules:
+        for course in courses:
+            course['conflict'] = None 
+            term = reglib.utilities.utilities.adjust_schedule_term(schedule.current_term)
+            term = reglib.utilities.utilities.format_term(term)
+            print term
+            if course['term'] != term: 
+                continue
+            else:
+                for course_sched in schedule.current_classes:
+                    if reglib.utilities.class_search_conflict(course, course_sched):
+                        course['conflict'] = course_sched['department'] + course_sched['number']
+                    
+        
   
