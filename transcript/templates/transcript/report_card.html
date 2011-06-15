@@ -7,30 +7,35 @@
 {% block content %}
 <div class="span-24 last">
   <h1>Report Card</h1>
-  <h2>Report Card By term</h2>
-  {% for term in term_groups %}
-    {% for term_name, group in term.items %}
-      <h3>{{term_name}}</h3>
-      <div class="group span-24 last">
-      {% for class in group %}
-        <div class="span-24 last report-class">
-          <div class="span-4 cn">
-            <span>{{class.department}} {{class.number}}</span>
+  <div class="report-navigation">
+    <a href="#report-section"><span>Report Card</span></a>
+    <a><span>Grade Distribution</span></a>
+  </div>
+  
+  <div class="report-section">
+    {% for term in term_groups %}
+      {% for term_name, group in term.items %}
+        <h3>{{term_name}}</h3>
+        <div class="group span-24 last">
+        {% for class in group %}
+          <div class="span-24 last report-class">
+            <div class="span-4 cn">
+              <span>{{class.department}} {{class.number}}</span>
+            </div>
+            <div class="span-8">
+              <span>{{class.title}}</span>
+            </div>
+            <div class="span-6">
+              <span>{{class.credits}}</span>
+            </div>
+            <div class="span-6 last grade grade-{{class.grade|first}}">
+              <span>{{class.grade}}</span>
+            </div>
           </div>
-          <div class="span-8">
-            <span>{{class.title}}</span>
-          </div>
-          <div class="span-6">
-            <span>{{class.credits}}</span>
-          </div>
-          <div class="span-6 last grade grade-{{class.grade|first}}">
-            <span>{{class.grade}}</span>
-          </div>
-        </div>
+        {% endfor %}
+      </div>
       {% endfor %}
-    </div>
-    {% endfor %}
-  {% endfor%}
-  <h2>Grade Distribution</h2>
+    {% endfor%}
+  </div>
 </div>
 {% endblock %}
