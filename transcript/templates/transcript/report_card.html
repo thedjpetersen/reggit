@@ -2,17 +2,19 @@
 
 {% block header %}
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/report_card.css" />
+  <script type="text/javascript" src="/site_media/javascripts/protovis-r3.2.js" ></script>
+  <script type="text/javascript" src="/site_media/javascripts/report_card.js" ></script>
 {% endblock %}
 
 {% block content %}
 <div class="span-24 last">
   <h1>Report Card</h1>
   <div class="report-navigation">
-    <a href="#report-section"><span>Report Card</span></a>
-    <a><span>Grade Distribution</span></a>
+    <a href="#report-card"><span>Report Card</span></a>
+    <a href="#grade-distribution"><span >Grade Distribution</span></a>
   </div>
   
-  <div class="report-section">
+  <div id="report-card" class="report-section">
     {% for term in term_groups %}
       {% for term_name, group in term.items %}
         <h3>{{term_name}}</h3>
@@ -37,5 +39,45 @@
       {% endfor %}
     {% endfor%}
   </div>
+
+  <div id="grade-distribution" class="report-section">
+
+    <div id="center">
+      <div id="fig" style="width:800px; height:400px;">
+        <script type="text/javascript+protovis">
+          var data = [
+            {% for grade in grade_distribution%}
+              {% for key, value in grade.items%}
+                {{ value }},
+              {% endfor %}
+            {% endfor %}
+          ]
+
+          w = 800
+          h = 400
+          x = pv.Scale.ordinal(pv.range({{ grade_distribution|length}})).splitBanded(0, w, 4/5)
+          y = pv.Scale.linear(0, 15).range(0, h);
+
+          var vis = new pv.Panel().width(w).height(h).bottom(20).left(20).right(5).top(5);
+
+          var bar = vis.add(pv.Bar).data(data).left(function()x(this.index)).width(x.range().band).bottom(0).height(y);
+
+          bar.anchor("top").add(pv.Label).textStyle("white").text(function(d) d);
+
+          letter_grades = [{% for grade in grade_distribution %}
+            {% for key, value in grade.items %}
+              "{{key}}",
+            {% endfor %}
+          {% endfor%}]
+
+          bar.anchor("bottom").add(pv.Label).textMargin(5).textBaseline("top").text(function() letter_grades[this.index]);
+
+          vis.add(pv.Rule).data(y.ticks()).bottom(function(d) Math.round(y(d)) - .5).strokeStyle(function(d) d ? "rgba(255,255,255,.3)" : "#000").add(pv.Rule).left(0).width(5).strokeStyle("#000").anchor("left").add(pv.Label).text(function(d) d);vis.render();
+
+        </script> 
+      </div>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
