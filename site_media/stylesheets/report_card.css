@@ -1,5 +1,5 @@
-h3{
-  margin-top:1em;
+.group{
+  margin-bottom:30px;
 }
 
 .report-class{
@@ -7,6 +7,10 @@ h3{
 }
 
 .report-class span{
+  font-size:1.3em;
+}
+
+.cn{
   font-size:1.3em;
 }
 
