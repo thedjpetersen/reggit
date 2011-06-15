@@ -1,12 +1,12 @@
-from  django.shortcuts import render_to_response
-from django.http import Http404
-import simplejson as json
-from django.http import HttpResponseRedirect
 import reglib
+import simplejson as json
+
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render_to_response
 
 def index(request):
     if request.method == 'GET':
-        return render_to_response('scheduler/index.html')
+        return render_to_response('scheduler.html')
 
     # if user chose to register a list of courses
     try:
@@ -21,7 +21,7 @@ def index(request):
             courses.append({'course':course, 'crn':crn})
 
         register(courses)
-        return render_to_response('scheduler/index.html')
+        return render_to_response('scheduler.html')
     except:
         pass
         
@@ -35,9 +35,14 @@ def index(request):
         classes_possible = results['classes_possible']
         combinations_json = json.dumps(combinations)
     except:
-        return render_to_response('scheduler/index.html')
+        return render_to_response('scheduler.html')
 
-    return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24), 'classes_possible':classes_possible})
+    return render_to_response('scheduler.html', {
+        'combinations':combinations, 
+        'json':combinations_json, 
+        'range':range(24), 
+        'classes_possible':classes_possible}
+    )
 
 def register(courses):
     """ register for all courses in a combination at once 
