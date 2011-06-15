@@ -65,6 +65,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'reggit.middleware.authentication.AuthenticationMiddleware'
 )
 
 ROOT_URLCONF = 'reggit.urls'

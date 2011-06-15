@@ -5,9 +5,6 @@ from django.http import HttpResponseRedirect
 import reglib
 
 def index(request):
-    if not 'regclass' in request.session:
-        return HttpResponseRedirect('/')
-
     if request.method == 'GET':
         return render_to_response('scheduler/index.html')
 

@@ -6,7 +6,6 @@ import reglib
 
 def index(request):
     if 'regclass' in request.session:
-        
         return HttpResponseRedirect('/main')
     return render_to_response('index.html', {'no_show_nav': 1})
 
@@ -32,15 +31,10 @@ def logout(request):
     return HttpResponseRedirect('/')
 
 def main(request):
-    if not 'regclass' in request.session:
-        return HttpResponseRedirect('/')
     regclass = request.session['regclass']
     return render_to_response('main.html')
 
 def scheduler(request):
-    if not 'regclass' in request.session:
-        return HttpResponseRedirect('/')
-
     if request.method == 'GET':
         return render_to_response('scheduler/index.html')
     regclass = request.session['regclass']
@@ -57,9 +51,6 @@ def scheduler(request):
     return render_to_response('scheduler/index.html', {'combinations':combinations, 'json':combinations_json, 'range':range(24), 'classes_possible':classes_possible})
 
 def planner(request):
-    if not 'regclass' in request.session:
-        return HttpResponseRedirect('/')
-
     regclass = request.session['regclass']
 
     required_courses = []
