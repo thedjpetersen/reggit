@@ -1,6 +1,8 @@
 from  django.shortcuts import render_to_response
 from django.http import Http404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.template import RequestContext, Template
 import simplejson as json
 import reglib
 
@@ -30,14 +32,8 @@ def index(request):
 
 def show(request, department, number, status=''):
     """ shows information about single course and can register from here """
+    course = department + number
     regclass = request.session['regclass']
-
-    regerror = 0
-    if status == "error":
-        regerror = 1
-
-    # to come back when redirecting to a different view func
-    request.session['prevcourse'] = department+number
 
     courses = regclass.class_search(department, number)
     if courses is None:
@@ -45,26 +41,31 @@ def show(request, department, number, status=''):
 
     if request.method == 'GET': 
         find_time_conflicts(regclass, courses)
-        return render_to_response('course/show.html', {'courses':courses, 'regerror': regerror}) 
+        return render_to_response('course/show.html', {'courses':courses})
 
     # user sumbitted crns to register for courses, use urls to redirect to register view
     crn_list_reg = request.POST.getlist('choose')
     if len(crn_list_reg) is 1: 
-        return HttpResponseRedirect('/course/register/' + crn_list_reg[0])
+        success = register(request, course, crn_list_reg[0])
     else:
-        return HttpResponseRedirect('/course/register/' + crn_list_reg[0] + "&" + crn_list_reg[1])
+        success = register(request, course, crn_list_reg[0], crn_list_reg[1])
 
-def register(request, crn1, crn2=""):    
-    """ register via parsing the url and calling the add_class """ 
+    # display confirmation or error message if register success/fail
+    if not success:
+        messages.error(request, "Failed to register for " + course ) 
+    else:
+        messages.success(request, "Successfully registered for " + course) 
+
+    return render_to_response('course/show.html', {'courses':courses}, context_instance=RequestContext(request))
+
+
+def register(request, course, crn1, crn2=""):    
+    """ register for course """ 
 
     regclass = request.session['regclass']
+    return regclass.add_class(crn1, crn2)
 
-    error = regclass.add_class(crn1, crn2)
-    
-    if error:
-        pass # pass an error message here
-    return HttpResponseRedirect('/course/' + request.session['prevcourse'])
-  
+
 def find_time_conflicts(regclass, courses):
     """ given a list of courses, checks current and next schedule for time conflicts """
     schedules = [regclass.schedule, regclass.next_schedule]
@@ -73,7 +74,6 @@ def find_time_conflicts(regclass, courses):
             course['conflict'] = None 
             term = reglib.utilities.utilities.adjust_schedule_term(schedule.current_term)
             term = reglib.utilities.utilities.format_term(term)
-            print term
             if course['term'] != term: 
                 continue
             else:
