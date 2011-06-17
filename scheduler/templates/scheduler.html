@@ -5,8 +5,12 @@
 <h1>Scheduler</h1>
 <br/>
 <br/> 
+
+{% comment %} 
+Form to choose which classes to schedule
+{% endcomment %}
 <form action="." method="post">
-  <span>Enter a list of classes separated commas</span><br/>
+  <span>Enter a list of comma-separated courses </span><br/>
 
   <input name="classes" />
   <select name="term">
@@ -24,6 +28,10 @@
 </form>
 <br/>
 
+{% comment %}
+Javascript and CSS 
+to populate the visualized schedule on hover and course table on click
+{% endcomment %}
 {% if combinations %} 
 {% block header %}
   <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css" />
@@ -34,14 +42,26 @@
   <script type="text/javascript" src="/site_media/javascripts/make_schedule.js" ></script>
 {% endblock %}
 
+
+{% comment %} 
+Pops up a combination table if user clicks on combination on the side panel.
+Has a register button (using hidden form) that registers all at once
+{% endcomment %}
 <div id="combinations-full" class="span-24 last">
   {% for combination in combinations %}
   <div id="combinationfull-{{forloop.counter}}" class="combination-full">
 	<h3>
 	  {% ifequal combination|length classes_possible %}
-        <img src="/site_media/images/check16.png" alt="Complete combination"></img>	
 	  {% endifequal %}
-	Combination {{forloop.counter}}
+    <form action='.' method='POST'>
+    {% for course in combination %}
+        <input type="hidden" name="course{{forloop.counter}}" value={{course.department|upper}}{{course.number}} />
+        <input type="hidden" name="crn{{forloop.counter}}" value={{course.crn}} />
+        <input type="hidden" name="courses" value="{{combination}}" />
+    {% endfor %}
+        <img src="/site_media/images/check16.png" alt="Complete combination"></img>	
+	Combination {{forloop.counter}} <input type="submit" name="register" value="Register" />
+    </form>
 	</h3>
 
     <table>
@@ -55,7 +75,6 @@
 		<th>CRN</th>
 	</tr>
 
-    <form action='.' method='POST'>
     {% for course in combination %}
     	<tr>
 		<td><a href="/course/{{course.department|upper}}{{course.number}}">{{course.department|upper}} {{course.number}}</a></td>
@@ -70,17 +89,16 @@
         {% endifnotequal %}
 		<td>{{course.crn}}</td>
 	    </tr>
-        <input type="hidden" name="course{{forloop.counter}}" value={{course.department|upper}}{{course.number}} />
-        <input type="hidden" name="crn{{forloop.counter}}" value={{course.crn}} />
     {% endfor %}
     </table>
-        <input type="hidden" name="courses" value="{{combination}}" />
-        <input type="submit" name="register" value="Register" />
-    </form>
   <br/>
   </div>
   {% endfor %}
 </div>
+
+{% comment %}
+Hovering over a combination populates this calendar table
+{% endcomment %}
 <div class="span-24 last">
   <div class="span-18">
     <table>
@@ -118,6 +136,11 @@
       {% endfor %}
   </table>
 </div>
+
+{% comment %}
+Side pane in which user can hover over or click on combinations
+to view course list pop up and the visualized schedule
+{% endcomment %}
 <div id="combinations" class="span-6 last">
 	<h5><img alt="Complete combination" src="/site_media/images/check16.png"></img> Complete combination</h5>
   {% for combination in combinations %}
