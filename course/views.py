@@ -1,7 +1,7 @@
 from  django.shortcuts import render_to_response
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
+from django.contrib import messages
 import simplejson as json
-from django.http import HttpResponseRedirect
 import reglib
 
 def index(request):
@@ -62,8 +62,8 @@ def register(request, crn1, crn2=""):
     error = regclass.add_class(crn1, crn2)
     
     if error:
-        return HttpResponseRedirect('/course/' + request.session['prevcourse'] + '?status=error')
-    return HttpResponseRedirect('/course/' + request.session['prevcourse'] + '?status=success')
+        pass # pass an error message here
+    return HttpResponseRedirect('/course/' + request.session['prevcourse'])
   
 def find_time_conflicts(regclass, courses):
     """ given a list of courses, checks current and next schedule for time conflicts """
