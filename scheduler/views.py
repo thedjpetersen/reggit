@@ -1,15 +1,24 @@
-import reglib
-import simplejson as json
-
-from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.http import Http404, HttpResponseRedirect
+from django.contrib import messages
+from django.template import RequestContext, Template
+import simplejson as json
+import reglib
+
 
 def index(request):
     if request.method == 'GET':
         return render_to_response('scheduler.html')
 
+    regclass = request.session['regclass']
+
     # if user chose to register a list of courses
     try:
+        if not regclass.schedule:
+            regclass.get_current_schedule()
+        if not regclass.next_schedule:
+            regclass.get_next_schedule()
+
         # create a dictionary of courses from the POST request
         courses = []
         # the post keys will be course1, course2....crn1, crn2....
@@ -20,13 +29,22 @@ def index(request):
             crn = request.POST[crn_key]
             courses.append({'course':course, 'crn':crn})
 
-        register(courses)
-        return render_to_response('scheduler.html')
+        # register
+        courses_copy = courses[:] # copy this guy because he's gonna get popped to hell
+        success_list = register(regclass, courses)
+
+        # display confimation or error message if register success/fail
+        # for each course
+        for (course, success) in zip(courses_copy, success_list):
+            if success:
+                messages.success(request, "Successfully registered for " + course['course']) 
+            else:
+                messages.error(request, "Failed to register for " + course['course'])
+        
     except:
         pass
-        
+
     # get list of courses and create combinations
-    regclass = request.session['regclass']
     try:
         classes = request.POST['classes'].split(', ')
         term_year = request.POST['term'] + request.POST['year']
@@ -35,16 +53,17 @@ def index(request):
         classes_possible = results['classes_possible']
         combinations_json = json.dumps(combinations)
     except:
-        return render_to_response('scheduler.html')
+        return render_to_response('scheduler.html', context_instance=RequestContext(request))
 
     return render_to_response('scheduler.html', {
         'combinations':combinations, 
         'json':combinations_json, 
         'range':range(24), 
-        'classes_possible':classes_possible}
+        'classes_possible':classes_possible},
+        context_instance=RequestContext(request)
     )
 
-def register(courses):
+def register(regclass, courses):
     """ register for all courses in a combination at once 
     @parameters courses is a list of course dictionaries with crn and course title 
     puts the crns in an appropriate list (with lecture/lab-rec logic) and hands it to add_class """
@@ -62,11 +81,22 @@ def register(courses):
                     crn_list.append([ course_pop['crn'], course['crn'] ])
                     courses.remove( {'course': course['course'], 'crn': course['crn']} )
         if not lab_rec_pair_flag:
-            crn_list.append(course_pop['crn'])
+            crn_list.append(str(course_pop['crn']))
         lab_rec_pair_flag = 0
 
-    regclass = request.session['regclass']
-    regclass.add_classes(crn_list)
+    success_list = regclass.add_classes(crn_list)
+                                        
+    # Ungroups lecture/lab-rec pairs in the true/false return list
+    return_list = []
+    for index, crn in enumerate(crn_list):
+        if success_list[index]:
+            return_list.append(True)
+        else:
+            return_list.append(False)
+
+    return return_list
+        
+
 
         
             

@@ -7,6 +7,17 @@
 <br/> 
 
 {% comment %} 
+Display confirmation or error messages on registration request
+{% endcomment %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% comment %} 
 Form to choose which classes to schedule
 {% endcomment %}
 <form action="." method="post">
@@ -53,6 +64,7 @@ Has a register button (using hidden form) that registers all at once
 	<h3>
 	  {% ifequal combination|length classes_possible %}
 	  {% endifequal %}
+    {% comment %} REGISTER FORM {% endcomment %}
     <form action='.' method='POST'>
     {% for course in combination %}
         <input type="hidden" name="course{{forloop.counter}}" value={{course.department|upper}}{{course.number}} />

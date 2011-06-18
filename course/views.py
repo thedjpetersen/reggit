@@ -1,6 +1,5 @@
 from  django.shortcuts import render_to_response
 from django.http import Http404, HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.template import RequestContext, Template
 import simplejson as json
@@ -29,7 +28,6 @@ def index(request):
 
     return HttpResponseRedirect('/course/' + department + number + '/') 
 
-
 def show(request, department, number, status=''):
     """ shows information about single course and can register from here """
     course = department + number
@@ -46,23 +44,27 @@ def show(request, department, number, status=''):
     # user sumbitted crns to register for courses, use urls to redirect to register view
     crn_list_reg = request.POST.getlist('choose')
     if len(crn_list_reg) is 1: 
-        success = register(request, course, crn_list_reg[0])
+        success = register(request, crn_list_reg[0])
     else:
-        success = register(request, course, crn_list_reg[0], crn_list_reg[1])
+        success = register(request, crn_list_reg[0], crn_list_reg[1])
 
     # display confirmation or error message if register success/fail
-    if not success:
-        messages.error(request, "Failed to register for " + course ) 
-    else:
+    if success:
         messages.success(request, "Successfully registered for " + course) 
+    else:
+        messages.error(request, "Failed to register for " + course ) 
 
     return render_to_response('course/show.html', {'courses':courses}, context_instance=RequestContext(request))
 
 
-def register(request, course, crn1, crn2=""):    
+def register(request, crn1, crn2=""):    
     """ register for course """ 
 
     regclass = request.session['regclass']
+    if not regclass.schedule:
+        regclass.get_current_schedule()
+    if not regclass.next_schedule:
+        regclass.get_next_schedule()
     return regclass.add_class(crn1, crn2)
 
 
