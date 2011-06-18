@@ -53,14 +53,13 @@ def index(request):
         classes_possible = results['classes_possible']
         combinations_json = json.dumps(combinations)
     except:
-        return render_to_response('scheduler.html', context_instance=RequestContext(request))
+        return render_to_response('scheduler.html')
 
     return render_to_response('scheduler.html', {
         'combinations':combinations, 
         'json':combinations_json, 
         'range':range(24), 
         'classes_possible':classes_possible},
-        context_instance=RequestContext(request)
     )
 
 def register(regclass, courses):
