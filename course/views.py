@@ -50,9 +50,9 @@ def show(request, department, number, status=''):
 
     # display confirmation or error message if register success/fail
     if success:
-        messages.success(request, "Successfully registered for " + course) 
+        messages.success(request, "Successfully registered for " + course.upper()) 
     else:
-        messages.error(request, "Failed to register for " + course ) 
+        messages.error(request, "Failed to register for " + course.upper())
 
     return render_to_response('course/show.html', {'courses':courses}, context_instance=RequestContext(request))
 
@@ -66,7 +66,6 @@ def register(request, crn1, crn2=""):
     if not regclass.next_schedule:
         regclass.get_next_schedule()
     return regclass.add_class(crn1, crn2)
-
 
 def find_time_conflicts(regclass, courses):
     """ given a list of courses, checks current and next schedule for time conflicts """

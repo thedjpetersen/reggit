@@ -5,6 +5,14 @@
 <h1>Schedule</h1> 
 <h2>{{term}}</h2>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{message.tags }}"{% endif %}>{{message}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% block header %}
     
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css"/>
@@ -58,7 +66,9 @@
             {% endfor %}
         </table>
     </div>
-
+    
+    {% comment %} Course information table with drop course checkboxes {% endcomment %}
+    <form action="." method="post">
     <table>
 	<tr>
 		<th>Class</th>
@@ -68,7 +78,7 @@
         <th>Location</th>
 		<th>Days</th>
 		<th>Time</th>
-		<th>CRN</th>
+        <th><input type="submit" name="dropform" value="Drop"</th>
 	</tr>
     {% for course in schedule %}
     	<tr>
@@ -79,9 +89,10 @@
         <td>{{course.location.building}} {{course.location.room}}</td>
 		<td>{{course.days|join:"" }}</td>
 		<td>{{course.times|join:"-"  }}</td>
-		<td>{{course.crn}}</td>
+        <td><input type="checkbox" name="drop" value={{course.crn}}></td>
 	</tr>
     {% endfor %}
+    </form>
     
     </table>
 </div>

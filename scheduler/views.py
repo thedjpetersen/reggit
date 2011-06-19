@@ -31,6 +31,7 @@ def index(request):
 
         # register
         courses_copy = courses[:] # copy this guy because he's gonna get popped to hell
+        regclass.drop_all_classes()
         success_list = register(regclass, courses)
 
         # display confimation or error message if register success/fail
