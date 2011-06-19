@@ -2,14 +2,23 @@
 
 {% block content %}
 
-<h1>Schedule</h1><br/><br/>
+<h1>Schedule</h1>
+<h2>{{term}}</h2>
 
+<link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css"/>
+
+{% comment %} Navigation {% endcomment %}
+<div class="schedule-navigation">
 {% if current_term %}
-    <h4><a href="next_term/">Next Term >></a></h4>
+    <a href="next_term/"><span>Next Term >></span></a>
 {% else %}
-    <h4><a href="/schedule/">&#060;&#060; Current Term</a></h4>
+    <a href="/schedule/"><span>&#060;&#060; Current Term</span></a>
 {% endif %}
+<br/>
+<br/>
+<br/>
+<h4>[No courses registered for this term]</h4>
+</div>
 
-<h3>No courses registered for this term</h3>
 
 {% endblock %}

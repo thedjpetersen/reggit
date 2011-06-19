@@ -17,3 +17,24 @@ td{
 .combination-full{
   display:none;
 }
+
+.schedule-navigation{
+  text-align:center;
+}
+
+.schedule-navigation a{
+  text-decoration:none;
+  color:black;
+}
+
+.schedule-navigation span{
+  font-size:1.5em;
+  padding-right:10px;
+  padding-left:10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.schedule-navigation span:hover{
+  background:#6C8DD5;
+}

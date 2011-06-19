@@ -2,20 +2,24 @@
 
 {% block content %}
 
-<h1>Schedule</h1><br/><br/>
+<h1>Schedule</h1> 
+<h2>{{term}}</h2>
 
 {% block header %}
+    
     <link rel="stylesheet" type="text/css" href="/site_media/stylesheets/make_schedule.css"/>
     <script type="text/javascript" src="/site_media/javascripts/jquery-min.js"></script>
     <script>schedule = {{json|safe}}</script>
     <script type="text/javascript" src="/site_media/javascripts/schedule.js"></script>
 {% endblock %}
 
+<div class="schedule-navigation">
 {% if current_term %}
-    <h3><a href="next_term/">Next Term >></a></h3>
+    <a href="next_term/"><span>Next Term >></span></a>
 {% else %}
-    <h3><a href="/schedule/">&#060;&#060; Current Term</a></h3>
+    <a href="/schedule/"><span>&#060;&#060; Current Term</span></a>
 {% endif %}
+</div>
 
 <div class="span-24 last">
     <div class="span-18">
